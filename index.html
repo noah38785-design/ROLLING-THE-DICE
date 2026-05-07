@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Rolling the Dice Network</title>
+
+  <!-- GitHub Pages friendly favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta
+    name="description"
+    content="Rolling the Dice Network - CFB news, recruiting, QB battles, rankings, and dynasty coverage."
+  />
+
+  <meta
+    name="keywords"
+    content="CFB, Recruiting, QB Battles, Dynasty, Sports"
+  />
+
+  <meta name="theme-color" content="#c43c2f" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #c43c2f;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header h1 {
+      font-size: 26px;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: white;
+      color: #c43c2f;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    nav button:hover {
+      background: #f1f1f1;
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #c43c2f, #7e261c);
+      padding: 40px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #f3d7d3;
+      font-size: 18px;
+    }
+
+    .card {
+      background: #1b1b1b;
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #333;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #555;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .category {
+      color: #ff7d70;
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .top-story-img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      border-top: 1px solid #222;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      header {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+      nav button {
+        flex: 1;
+      }
+
+      .hero {
+        padding: 28px;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🎲 Rolling the Dice</h1>
+
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('rankings')">Rankings</button>
+      <button onclick="showPage('recruiting')">Recruiting</button>
+      <button onclick="showPage('qb')">QB Battles</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+
+      <div class="hero">
+        <h2>Rolling the Dice Network</h2>
+
+        <p>
+          Covering dynasty football, recruiting battles,
+          rankings, QB competitions, and the future of
+          college football.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="category">Top Story</div>
+
+        <h2>
+          Uzomah Leads Heated Air Force QB Competition Entering 2028
+        </h2>
+
+        <p>
+          Air Force enters the season with one of the most intriguing
+          quarterback battles in the independent scene. Greg Uzomah
+          currently projects as the safest option, while Tevin Cisco’s
+          upside continues to push the competition deeper into camp.
+        </p>
+
+        <img
+          class="top-story-img"
+          src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?q=80&w=1200&auto=format&fit=crop"
+          alt="Football Stadium"
+        />
+      </div>
+
+      <div class="card">
+        <div class="category">Breaking News</div>
+
+        <h2>James Lay Recruitment Intensifies</h2>
+
+        <p>
+          Western Kentucky and Arizona remain in the race,
+          but Air Force continues building momentum for the
+          dual-threat quarterback prospect.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- RANKINGS -->
+    <section id="rankings" class="page">
+
+      <div class="card">
+        <div class="category">Dynasty Poll</div>
+
+        <h2>Top 25 Rankings</h2>
+
+        <p>#12 Air Force</p>
+        <p>#18 Navy</p>
+        <p>#24 Army</p>
+        <p>#25 SMU</p>
+      </div>
+
+      <div class="card">
+        <div class="category">Independent Watch</div>
+
+        <h2>Projected Independent Standings</h2>
+
+        <p>1. Air Force</p>
+        <p>2. Navy</p>
+        <p>3. Army</p>
+      </div>
+
+    </section>
+
+    <!-- RECRUITING -->
+    <section id="recruiting" class="page">
+
+      <div class="card">
+        <div class="category">Recruiting</div>
+
+        <h2>Air Force Monitoring Multiple Late-Rising Prospects</h2>
+
+        <p>
+          The Falcons continue evaluating several under-recruited
+          four-star defensive backs while pushing hard for quarterback
+          James Lay out of Washington.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="category">Commit Watch</div>
+
+        <h2>Amani Melifonwu Emerging as Key Option</h2>
+
+        <p>
+          The Texas athlete remains one of the most explosive
+          prospects on Air Force’s board entering the middle of
+          the recruiting cycle.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- QB BATTLES -->
+    <section id="qb" class="page">
+
+      <div class="card">
+        <div class="category">QB Battles</div>
+
+        <h2>Uzomah vs Cisco vs Boothe</h2>
+
+        <p>
+          Uzomah offers structure and control, Cisco brings elite
+          arm talent and upside, while Boothe remains the offensive
+          wildcard capable of changing games with mobility.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="category">Analysis</div>
+
+        <h2>What Air Force Wants at Quarterback</h2>
+
+        <p>
+          Coaches continue prioritizing decision-making,
+          option execution, and composure over raw statistics
+          as the offense searches for its identity.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Rolling the Dice Network • All Rights Reserved
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+
+      const pages = document.querySelectorAll('.page');
+
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+
+      document
+        .getElementById(pageId)
+        .classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
