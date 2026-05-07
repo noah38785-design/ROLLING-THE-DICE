@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Rolling the Dice Network</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#0b0b0b;
+      color:white;
+      font-family:Arial,sans-serif;
+    }
+
+    header{
+      background:linear-gradient(90deg,#c43c2f,#7a2117);
+      padding:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    header h1{
+      font-size:28px;
+      font-weight:900;
+    }
+
+    nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    nav button{
+      border:none;
+      background:white;
+      color:#c43c2f;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    nav button:hover{
+      transform:translateY(-2px);
+      background:#ececec;
+    }
+
+    main{
+      padding:20px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#c43c2f,#781f15);
+      padding:50px;
+      border-radius:20px;
+      margin-bottom:25px;
+    }
+
+    .hero h2{
+      font-size:42px;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      color:#f2d9d5;
+      font-size:18px;
+    }
+
+    .page{
+      display:block;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .modern-card{
+      background:#171717;
+      border:1px solid #2d2d2d;
+      border-radius:18px;
+      padding:20px;
+      margin-bottom:20px;
+      transition:0.2s;
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .modern-card:hover{
+      transform:translateY(-3px);
+      border-color:#444;
+    }
+
+    .modern-card h2{
+      margin-bottom:10px;
+      font-size:28px;
+    }
+
+    .category{
+      color:#ff8578;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-bottom:10px;
+      font-weight:bold;
+    }
+
+    .article-img{
+      width:100%;
+      border-radius:14px;
+      margin-top:14px;
+      margin-bottom:14px;
+    }
+
+    .timestamp{
+      color:#888;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      margin-top:12px;
+      padding:12px;
+      background:#242424;
+      color:white;
+      border:none;
+      border-radius:10px;
+    }
+
+    textarea{
+      min-height:180px;
+      resize:vertical;
+    }
+
+    .admin-btn{
+      margin-top:14px;
+      width:100%;
+      background:#c43c2f;
+      color:white;
+      border:none;
+      padding:14px;
+      border-radius:10px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .admin-btn:hover{
+      background:#dd4d3d;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#666;
+      border-top:1px solid #222;
+      margin-top:50px;
+    }
+
+    @media(max-width:768px){
+
+      header{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav{
+        width:100%;
+      }
+
+      nav button{
+        flex:1;
+      }
+
+      .hero{
+        padding:30px;
+      }
+
+      .hero h2{
+        font-size:30px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>🎲 Rolling the Dice</h1>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('recruiting')">Recruiting</button>
+    <button onclick="showPage('qb')">QB Battles</button>
+    <button onclick="showPage('rankings')">Rankings</button>
+    <button onclick="showPage('admin')">Admin</button>
+  </nav>
+
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="page">
+
+    <div class="hero">
+
+      <h2>Rolling the Dice Network</h2>
+
+      <p>
+        Covering dynasty football, recruiting battles,
+        rankings, quarterback competitions,
+        and the future of college football.
+      </p>
+
+    </div>
+
+    <div id="articles"></div>
+
+  </section>
+
+  <!-- RECRUITING -->
+  <section id="recruiting" class="page hidden">
+
+    <div class="modern-card">
+
+      <div class="category">
+        Recruiting
+      </div>
+
+      <h2>Recruiting Headquarters</h2>
+
+      <p>
+        Track commits, pipelines, recruiting battles,
+        and future stars.
+      </p>
+
+    </div>
+
+    <div id="recruitingArticles"></div>
+
+  </section>
+
+  <!-- QB BATTLES -->
+  <section id="qb" class="page hidden">
+
+    <div class="modern-card">
+
+      <div class="category">
+        QB Battles
+      </div>
+
+      <h2>Quarterback Competition Central</h2>
+
+      <p>
+        Follow the latest quarterback battles,
+        breakout performances, and depth chart movement.
+      </p>
+
+    </div>
+
+    <div id="qbArticles"></div>
+
+  </section>
+
+  <!-- RANKINGS -->
+  <section id="rankings" class="page hidden">
+
+    <div class="modern-card">
+
+      <h2>Dynasty Rankings</h2>
+
+      <div id="rankingsList"></div>
+
+    </div>
+
+    <div class="modern-card">
+
+      <h2>Add Team Ranking</h2>
+
+      <input
+        type="text"
+        id="teamName"
+        placeholder="Team Name"
+      />
+
+      <input
+        type="number"
+        id="teamRank"
+        placeholder="Ranking"
+      />
+
+      <button
+        class="admin-btn"
+        onclick="addTeam()"
+      >
+        Add Team
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ADMIN -->
+  <section id="admin" class="page hidden">
+
+    <!-- LOGIN -->
+    <div id="loginCard" class="modern-card">
+
+      <h2>Admin Login</h2>
+
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+      />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
+
+      <button
+        class="admin-btn"
+        onclick="login()"
+      >
+        Login
+      </button>
+
+    </div>
+
+    <!-- CMS -->
+    <div
+      id="cmsPanel"
+      class="hidden"
+    >
+
+      <div class="modern-card">
+
+        <h2>Publish Article</h2>
+
+        <input
+          type="text"
+          id="title"
+          placeholder="Article Title"
+        />
+
+        <select id="category">
+          <option>CFB</option>
+          <option>Recruiting</option>
+          <option>QB Battles</option>
+        </select>
+
+        <input
+          type="text"
+          id="image"
+          placeholder="Image URL"
+        />
+
+        <textarea
+          id="content"
+          placeholder="Write article..."
+        ></textarea>
+
+        <button
+          class="admin-btn"
+          onclick="publishArticle()"
+        >
+          Publish Article
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  © Rolling the Dice Network
+</footer>
+
+<script>
+
+  // =========================
+  // ADMIN LOGIN
+  // =========================
+
+  const ADMIN_USER = "admin";
+  const ADMIN_PASS = "27372";
+
+  function login() {
+
+    const user =
+      document.getElementById("username").value;
+
+    const pass =
+      document.getElementById("password").value;
+
+    if (
+      user === ADMIN_USER &&
+      pass === ADMIN_PASS
+    ) {
+
+      localStorage.setItem("admin", "true");
+
+      document
+        .getElementById("loginCard")
+        .classList.add("hidden");
+
+      document
+        .getElementById("cmsPanel")
+        .classList.remove("hidden");
+
+    } else {
+
+      alert("Incorrect Login");
+
+    }
+  }
+
+  // =========================
+  // CHECK LOGIN
+  // =========================
+
+  window.onload = () => {
+
+    if (
+      localStorage.getItem("admin") === "true"
+    ) {
+
+      document
+        .getElementById("loginCard")
+        .classList.add("hidden");
+
+      document
+        .getElementById("cmsPanel")
+        .classList.remove("hidden");
+
+    }
+
+    renderArticles();
+    renderRankings();
+  };
+
+  // =========================
+  // NAVIGATION
+  // =========================
+
+  function showPage(id) {
+
+    const pages =
+      document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+      page.classList.add("hidden");
+    });
+
+    document
+      .getElementById(id)
+      .classList.remove("hidden");
+  }
+
+  // =========================
+  // ARTICLES
+  // =========================
+
+  let articles =
+    JSON.parse(
+      localStorage.getItem("articles")
+    ) || [];
+
+  function publishArticle() {
+
+    const title =
+      document.getElementById("title").value;
+
+    const category =
+      document.getElementById("category").value;
+
+    const image =
+      document.getElementById("image").value;
+
+    const content =
+      document.getElementById("content").value;
+
+    if (!title || !content) {
+
+      alert("Missing fields");
+
+      return;
+    }
+
+    const article = {
+      id: Date.now(),
+      title,
+      category,
+      image,
+      content,
+      timestamp:
+        new Date().toLocaleString()
+    };
+
+    articles.unshift(article);
+
+    localStorage.setItem(
+      "articles",
+      JSON.stringify(articles)
+    );
+
+    renderArticles();
+
+    document.getElementById("title").value="";
+    document.getElementById("image").value="";
+    document.getElementById("content").value="";
+
+    alert("Article Published");
+  }
+
+  function renderArticles() {
+
+    const home =
+      document.getElementById("articles");
+
+    const recruiting =
+      document.getElementById("recruitingArticles");
+
+    const qb =
+      document.getElementById("qbArticles");
+
+    home.innerHTML = "";
+    recruiting.innerHTML = "";
+    qb.innerHTML = "";
+
+    articles.forEach(article => {
+
+      const html = `
+
+        <div class="modern-card">
+
+          <div class="category">
+            ${article.category}
+          </div>
+
+          <h2>
+            ${article.title}
+          </h2>
+
+          ${
+            article.image
+            ?
+            `<img
+              src="${article.image}"
+              class="article-img"
+            >`
+            :
+            ""
+          }
+
+          <p class="timestamp">
+            ${article.timestamp}
+          </p>
+
+          <p>
+            ${article.content}
+          </p>
+
+        </div>
+
+      `;
+
+      home.innerHTML += html;
+
+      if (
+        article.category === "Recruiting"
+      ) {
+
+        recruiting.innerHTML += html;
+      }
+
+      if (
+        article.category === "QB Battles"
+      ) {
+
+        qb.innerHTML += html;
+      }
+
+    });
+  }
+
+  // =========================
+  // RANKINGS
+  // =========================
+
+  let rankings =
+    JSON.parse(
+      localStorage.getItem("rankings")
+    ) || [];
+
+  function addTeam() {
+
+    const team =
+      document.getElementById("teamName").value;
+
+    const rank =
+      document.getElementById("teamRank").value;
+
+    if (!team || !rank) {
+
+      alert("Missing fields");
+
+      return;
+    }
+
+    rankings.push({
+      team,
+      rank
+    });
+
+    rankings.sort((a,b)=>a.rank-b.rank);
+
+    localStorage.setItem(
+      "rankings",
+      JSON.stringify(rankings)
+    );
+
+    renderRankings();
+
+    document.getElementById("teamName").value="";
+    document.getElementById("teamRank").value="";
+  }
+
+  function renderRankings() {
+
+    const container =
+      document.getElementById("rankingsList");
+
+    container.innerHTML = "";
+
+    rankings.forEach(team => {
+
+      container.innerHTML += `
+
+        <div class="modern-card">
+
+          <div class="category">
+            Rankings
+          </div>
+
+          <h2>
+            #${team.rank} ${team.team}
+          </h2>
+
+        </div>
+
+      `;
+    });
+  }
+
+</script>
+
+</body>
+</html>
