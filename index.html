@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolling the Dice Network</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      background: #c43c2f;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    h1 { font-size: 26px; }
+    nav button {
+      background: white;
+      color: #c43c2f;
+      border: none;
+      padding: 10px 16px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .page { display: none; }
+    .active { display: block; }
+    .card {
+      background: #1b1b1b;
+      padding: 18px;
+      margin: 15px 0;
+      border-radius: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎲 Rolling the Dice</h1>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('rankings')">Rankings</button>
+      <button onclick="showPage('recruiting')">Recruiting</button>
+      <button onclick="showPage('qb')">QB Battles</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="card">
+        <h2>Welcome to Rolling the Dice Network</h2>
+        <p>My College Football Dynasty News & Updates</p>
+      </div>
+    </section>
+
+    <section id="rankings" class="page">
+      <div class="card"><h2>Rankings</h2><p>Content coming soon...</p></div>
+    </section>
+
+    <section id="recruiting" class="page">
+      <div class="card"><h2>Recruiting</h2><p>Content coming soon...</p></div>
+    </section>
+
+    <section id="qb" class="page">
+      <div class="card"><h2>QB Battles</h2><p>Content coming soon...</p></div>
+    </section>
+  </main>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
